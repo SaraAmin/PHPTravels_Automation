@@ -6,14 +6,14 @@ import com.framework.TestBase;
 
 public class ScenarioTest extends TestBase {
 
-	@Test
+	@Test(priority = 1)
 	public void registrationTest() throws Exception {
 
 		logger = report.createTest("Registration Test");
 		executor.startExecution(projectConfig.getProperty("testScenarioPath"), "Register");
 	}
 
-	// @Test
+	@Test(priority = 2)
 	public void loginTest() throws Exception {
 
 		logger = report.createTest("Login Test");
