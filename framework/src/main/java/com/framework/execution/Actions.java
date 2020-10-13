@@ -8,15 +8,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import org.testng.ITestResult;
 import org.testng.annotations.Test;
 
 import com.framework.TestBase;
 
 public class Actions extends TestBase {
-
-	// object, action, data
-	static ITestResult testResult;
 
 	@Test
 	public static void open(String... parameters) {
@@ -26,8 +22,7 @@ public class Actions extends TestBase {
 			driversPath.put("chrome", projectConfig.getProperty("chromeDriver"));
 			driversPath.put("firefox", projectConfig.getProperty("geckoDriver"));
 
-			driver.initializeBrowser(envConfig.getProperty("browser"), driversPath, envConfig.getProperty("Wait"),
-					envConfig.getProperty("pageLoadTimeout"));
+			driver.initializeBrowser(driversPath, envConfig);
 			logger.pass("Browser '" + browser + "' opened successfully.");
 		} catch (Exception e) {
 			logger.fail("Browser '" + browser + "' did not open.");
