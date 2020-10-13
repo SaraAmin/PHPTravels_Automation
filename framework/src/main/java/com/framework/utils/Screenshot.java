@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -25,8 +26,8 @@ public class Screenshot {
 	}
 
 	public static String getCurrentDateTime() {
-		DateFormat customFormat = new SimpleDateFormat("");
-		return customFormat.toString();
+		DateFormat customFormat = new SimpleDateFormat("MM_dd_yyyy_HH_mm_ss");
+		return customFormat.format(Calendar.getInstance().getTime());
 	}
 
 }

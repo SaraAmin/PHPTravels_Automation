@@ -10,7 +10,6 @@ import java.util.Properties;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
 import com.aventstack.extentreports.ExtentReports;
@@ -23,7 +22,7 @@ import com.framework.utils.Screenshot;
 
 public class TestBase {
 
-	public Executor executor;
+	public static Executor executor;
 	protected static Properties projectConfig = new Properties();
 	protected static Properties envConfig = new Properties();
 	protected static Driver driver;
@@ -50,6 +49,7 @@ public class TestBase {
 			testData = ExcelParser.getTestdata(projectConfig.getProperty("testDataPath"),
 					projectConfig.getProperty("testData_Id"));
 			driver = new Driver();
+			executor = new Executor();
 		} catch (Exception e) {
 			System.out.println(e.getStackTrace());
 		}
@@ -65,16 +65,10 @@ public class TestBase {
 		report.attachReporter(htmlReport);
 	}
 
-	@BeforeClass
-	public void setExecutor() {
-		this.executor = new Executor();
-	}
-
 	@AfterClass
 	public void tearDown() {
 		if (driver.browser != null)
 			driver.browser.quit();
-		report.flush();
 	}
 
 	@AfterMethod
@@ -84,6 +78,10 @@ public class TestBase {
 					.createScreenCaptureFromPath(Screenshot.takeScreenshot(driver, screenshotsPath, m.getName()))
 					.build());
 		}
+		report.flush();
+		if (driver.browser != null)
+			driver.browser.quit();
+
 	}
 
 }
