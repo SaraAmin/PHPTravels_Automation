@@ -20,6 +20,7 @@ public class Driver {
 			System.setProperty("webdriver.gecko.driver", driversPath.get(browserName));
 			browser = new FirefoxDriver();
 		}
+		browser.manage().window().maximize();
 		wait = new WebDriverWait(browser, Integer.parseInt(waitValue));
 	}
 }
