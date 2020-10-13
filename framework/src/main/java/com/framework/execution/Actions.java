@@ -16,16 +16,15 @@ public class Actions extends TestBase {
 
 	@Test
 	public static void open(String... parameters) {
-		String browser = "";
 		try {
 			Map<String, String> driversPath = new HashMap<>();
 			driversPath.put("chrome", projectConfig.getProperty("chromeDriver"));
 			driversPath.put("firefox", projectConfig.getProperty("geckoDriver"));
 
 			driver.initializeBrowser(driversPath, envConfig);
-			logger.pass("Browser '" + browser + "' opened successfully.");
+			logger.pass("Browser '" + envConfig.getProperty("browser") + "' opened successfully.");
 		} catch (Exception e) {
-			logger.fail("Browser '" + browser + "' did not open.");
+			logger.fail("Browser '" + envConfig.getProperty("browser") + "' did not open.");
 			Assert.fail();
 		}
 	}
