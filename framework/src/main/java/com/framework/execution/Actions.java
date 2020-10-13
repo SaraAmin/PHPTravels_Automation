@@ -1,5 +1,7 @@
 package com.framework.execution;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
@@ -20,8 +22,10 @@ public class Actions extends TestBase {
 	public static void open(String... parameters) {
 		String browser = "";
 		try {
-			browser = envConfig.getProperty("browser");
-			driver.initializeBrowser(browser);
+			Map<String, String> driversPath = new HashMap<>();
+			driversPath.put("chrome", projectConfig.getProperty("chromeDriver"));
+			driversPath.put("firefox", projectConfig.getProperty("geckoDriver"));
+			driver.initializeBrowser(envConfig.getProperty("browser"), driversPath, envConfig.getProperty("Wait"));
 			logger.pass("Browser '" + browser + "' opened successfully.");
 		} catch (Exception e) {
 			logger.fail("Browser '" + browser + "' did not open.");
