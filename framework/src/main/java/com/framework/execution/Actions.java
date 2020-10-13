@@ -76,11 +76,23 @@ public class Actions extends TestBase {
 		String testdata1 = testData.get(parameters[0]);
 		String testdata2 = testData.get(parameters[2]);
 		if (testdata1.equals(testdata2)) {
-			logger.warning("Verify Text Match failed. Value of '" + parameters[0] + "'(" + testdata1
-					+ ") m the value of '" + parameters[2] + "'(" + testdata2 + ").");
+			logger.warning("Verify Equal failed. Value of '" + parameters[0] + "'(" + testdata1 + ") m the value of '"
+					+ parameters[2] + "'(" + testdata2 + ").");
 		} else {
-			logger.warning("Verify Text Match passed. Value of '" + parameters[0] + "'(" + testdata1
+			logger.warning("Verify Equal passed. Value of '" + parameters[0] + "'(" + testdata1
 					+ ") does not match the value of '" + parameters[2] + "'(" + testdata2 + ").");
+		}
+	}
+
+	public static void verifyequal(String... parameters) {
+		String testdata1 = testData.get(parameters[0]);
+		String testdata2 = testData.get(parameters[2]);
+		if (testdata1.equals(testdata2)) {
+			logger.warning("Verify Equal passed. Value of '" + parameters[0] + "'(" + testdata1
+					+ ") does not match the value of '" + parameters[2] + "'(" + testdata2 + ").");
+		} else {
+			logger.warning("Verify Equal failed. Value of '" + parameters[0] + "'(" + testdata1 + ") m the value of '"
+					+ parameters[2] + "'(" + testdata2 + ").");
 		}
 	}
 
