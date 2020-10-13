@@ -23,7 +23,7 @@ public class ExcelParser {
 			scenarioFile = new FileInputStream(new File(scenarioPath));
 
 			wb = WorkbookFactory.create(scenarioFile);
-			Sheet sheet = wb.getSheet(sheetName);
+			Sheet sheet = wb.getSheet(sheetName.trim());
 
 			// Array in format : Object, Action, TestData
 			String[] stepData;

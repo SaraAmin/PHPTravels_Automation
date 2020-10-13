@@ -13,7 +13,7 @@ public class ScenarioTest extends TestBase {
 		this.executor.startExecution(projectConfig.getProperty("testScenarioPath"), "Register");
 	}
 
-	@Test
+	// @Test
 	public void loginTest() throws Exception {
 
 		logger = report.createTest("Login Test");

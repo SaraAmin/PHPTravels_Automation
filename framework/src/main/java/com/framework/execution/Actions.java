@@ -25,7 +25,9 @@ public class Actions extends TestBase {
 			Map<String, String> driversPath = new HashMap<>();
 			driversPath.put("chrome", projectConfig.getProperty("chromeDriver"));
 			driversPath.put("firefox", projectConfig.getProperty("geckoDriver"));
-			driver.initializeBrowser(envConfig.getProperty("browser"), driversPath, envConfig.getProperty("Wait"));
+
+			driver.initializeBrowser(envConfig.getProperty("browser"), driversPath, envConfig.getProperty("Wait"),
+					envConfig.getProperty("pageLoadTimeout"));
 			logger.pass("Browser '" + browser + "' opened successfully.");
 		} catch (Exception e) {
 			logger.fail("Browser '" + browser + "' did not open.");
@@ -71,12 +73,14 @@ public class Actions extends TestBase {
 	}
 
 	public static void verifynotequal(String... parameters) {
-		if (testData.get(parameters[0]).equals(testData.get(parameters[2]))) {
-			logger.warning("Verify Text Match failed. Value of '" + parameters[0] + "'(" + testData.get(parameters[0])
-					+ ") m the value of '" + parameters[2] + "'(" + testData.get(parameters[2]) + ").");
+		String testdata1 = testData.get(parameters[0]);
+		String testdata2 = testData.get(parameters[2]);
+		if (testdata1.equals(testdata2)) {
+			logger.warning("Verify Text Match failed. Value of '" + parameters[0] + "'(" + testdata1
+					+ ") m the value of '" + parameters[2] + "'(" + testdata2 + ").");
 		} else {
-			logger.warning("Verify Text Match passed. Value of '" + parameters[0] + "'(" + testData.get(parameters[0])
-					+ ") does not match the value of '" + parameters[2] + "'(" + testData.get(parameters[2]) + ").");
+			logger.warning("Verify Text Match passed. Value of '" + parameters[0] + "'(" + testdata1
+					+ ") does not match the value of '" + parameters[2] + "'(" + testdata2 + ").");
 		}
 	}
 

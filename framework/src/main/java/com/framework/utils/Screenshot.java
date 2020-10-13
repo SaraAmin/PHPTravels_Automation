@@ -16,7 +16,7 @@ public class Screenshot {
 
 	public static String takeScreenshot(Driver driver, String dir, String stepName) {
 		File screenshot = ((TakesScreenshot) driver.browser).getScreenshotAs(OutputType.FILE);
-		String screenshotPath = dir + "_" + stepName + "_" + getCurrentDateTime() + ".png";
+		String screenshotPath = dir + "\\_" + stepName + "_" + getCurrentDateTime() + ".png";
 		try {
 			FileHandler.copy(screenshot, new File(screenshotPath));
 		} catch (IOException e) {

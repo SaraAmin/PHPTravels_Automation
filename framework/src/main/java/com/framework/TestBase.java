@@ -10,6 +10,7 @@ import java.util.Properties;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
 import com.aventstack.extentreports.ExtentReports;
@@ -35,12 +36,10 @@ public class TestBase {
 	static {
 		FileInputStream config = null;
 		try {
-			config = new FileInputStream(
-					"C:\\VDFData\\RD\\Repos\\PHPTravels_Automation\\framework\\src\\main\\java\\com\\framework\\config\\project.properties");
+			config = new FileInputStream(".\\src\\main\\java\\com\\framework\\config\\project.properties");
 			projectConfig.load(config);
 			config.close();
-			config = new FileInputStream(
-					"C:\\VDFData\\RD\\Repos\\PHPTravels_Automation\\framework\\src\\main\\java\\com\\framework\\config\\env.properties");
+			config = new FileInputStream(".\\src\\main\\java\\com\\framework\\config\\env.properties");
 			envConfig.load(config);
 			config.close();
 
@@ -49,7 +48,6 @@ public class TestBase {
 			testData = ExcelParser.getTestdata(projectConfig.getProperty("testDataPath"),
 					projectConfig.getProperty("testData_Id"));
 			driver = new Driver();
-			executor = new Executor();
 		} catch (Exception e) {
 			System.out.println(e.getStackTrace());
 		}
@@ -57,12 +55,17 @@ public class TestBase {
 
 	@BeforeSuite
 	public void setUpSuite() {
-		String reportPath = projectConfig.getProperty("reportPath") + "suiteReport.html";
-		screenshotsPath = projectConfig.getProperty("reportPath") + "Screenshots";
+		String reportPath = projectConfig.getProperty("reportPath") + "\\suiteReport.html";
+		screenshotsPath = projectConfig.getProperty("reportPath") + "\\Screenshots\\";
 		new File(screenshotsPath).mkdirs();
 		ExtentHtmlReporter htmlReport = new ExtentHtmlReporter(new File(reportPath));
 		report = new ExtentReports();
 		report.attachReporter(htmlReport);
+	}
+
+	@BeforeClass
+	public void setExecutor() {
+		executor = new Executor();
 	}
 
 	@AfterClass
@@ -74,14 +77,13 @@ public class TestBase {
 	@AfterMethod
 	public void afterTestStep(ITestResult result, Method m) throws IOException {
 		if (result.getStatus() == ITestResult.FAILURE) {
-			logger.fail("step" + m.getName() + "failed.", MediaEntityBuilder
+			logger.fail("step failed.", MediaEntityBuilder
 					.createScreenCaptureFromPath(Screenshot.takeScreenshot(driver, screenshotsPath, m.getName()))
 					.build());
 		}
 		report.flush();
 		if (driver.browser != null)
 			driver.browser.quit();
-
 	}
 
 }
