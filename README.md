@@ -3,7 +3,7 @@ This is a simple keyword driven framework automating the registration and login 
 
 ## Setup
 - After cloning the repo make sure to build the **pom.xml** file to get the required dependencies.</br>
-- Make sure to use a java version equal or higher than **1.8**
+- Make sure to use a java version equal to or higher than **1.8**
 
 ## Framework structure
 - Provided are the framework's classes and configurations property files and TestData, ObjectRepository and Test case excel sheets.</br>
@@ -16,7 +16,7 @@ This is a simple keyword driven framework automating the registration and login 
 
 **Supported files format**</br>
 Test Data, Object Repository, and TestScenario files must all be in excel format **(.xlsx)**</br>
-Project and 
+Project and environment configuration files are in (.properties) format.
 
 **Supported Keywords**</br>- Open</br>- Navigate To</br>- Assert Title</br>- Click</br>- Type</br>- Close</br>- verify Text Match (Matching given string with a regex)</br>- Assert Text Equal</br>- Verify Equal</br>- Verify Not Equal
 
@@ -24,7 +24,7 @@ Project and
 
 **Screenshots are enabled on failure and attached to report**</br>
 
-**Upon a step failing, an exception occuring, or a failed assertion; the browser closes, a screenshot is take and the report is generated**</br>
+**Upon a step failing, an exception occuring, or a failed assertion; the browser closes, a screenshot is taken and the report is generated**</br>
 
 **Configurations**</br>
 1- Project and environment configuration files</br>
