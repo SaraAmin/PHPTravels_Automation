@@ -24,7 +24,7 @@ Project and
 
 **Screenshots are enabled on failure and attached to report**</br>
 
-**Upon a step failing, and exception occuring, or a failed assertion, **</br>
+**Upon a step failing, an exception occuring, or a failed assertion; the browser closes, a screenshot is take and the report is generated**</br>
 
 **Configurations**</br>
 1- Project and environment configuration files</br>
@@ -37,7 +37,7 @@ Project and
   >   - *testScenarioPath* = *Full* path of the TestScenario(s) excel sheet
   >   - *chromeDriver* = *Full* path of the chrome driver
   >   - *geckoDriver* = *Full* path of the gecko driver
-  >   - *reportPath* = *Full* path of the *Report* folder
+  >   - *reportPath* = *Full* path of the *Report* folder. ***You can view report @ reportPath +\SuiteReport.html***
   > 
   > -***Environment configuration: Contains the test env properties.***
   >   - *browser* = Name of the browser to be used (Chrome *or* Firefox)
